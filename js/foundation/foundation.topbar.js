@@ -65,15 +65,15 @@
       if (sticky && settings.sticky_on === 'all') {
         return true;
       } else if (sticky && this.small() && settings.sticky_on === 'small') {
-        return true;
+      	return (matchMedia(Foundation.media_queries.small).matches && !matchMedia(Foundation.media_queries.medium).matches &&
+      		!matchMedia(Foundation.media_queries.large).matches); 
       } else if (sticky && this.medium() && settings.sticky_on === 'medium') {
-        return true;
-      } else if (sticky && this.large() && settings.sticky_on === 'large') {
-        return true;
-      }
-
-      return false;
-    },
+      	return (matchMedia(Foundation.media_queries.small).matches && matchMedia(Foundation.media_queries.medium).matches &&
+      		!matchMedia(Foundation.media_queries.large).matches);
+      } else if(sticky && this.large() && settings.sticky_on === 'large') {
+        return (matchMedia(Foundation.media_queries.small).matches && matchMedia(Foundation.media_queries.medium).matches &&
+      		matchMedia(Foundation.media_queries.large).matches);
+      },
 
     toggle: function (toggleEl) {
       var self = this;
